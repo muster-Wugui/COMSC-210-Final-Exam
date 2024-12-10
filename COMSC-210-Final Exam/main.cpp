@@ -21,13 +21,26 @@ struct coffee {
     
 };
 
+struct muffin {
+    string name;
+    string order;
+};
+
+struct bracelet {
+    string name;
+};
+
+struct phone {
+    string name;
+    string order;
+};
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
     
-    deque<pair<string, string>> muffins;
-    vector<string> bracelets;
-    stack<pair<string, string>> phones;
+    deque<muffin> muffins;
+    vector<bracelet> bracelets;
+    stack<phone> phones;
     
     string names[10] = {"Austin", "Stepen", "Andrew", "Tony", "Bob", "James", "Smith", "Steve", "Amy", "Ruby"};
     string drinks[10] = {"Latte", "Mocha", "Oatmilk", "Milk", "Coffee 1", "Coffee 2", "Coffee 3", "Coffee 4", "Coffee 5", "Lemonade"};
@@ -51,6 +64,8 @@ int main() {
     
     for (int round = 1; round <= 10; round++){
         cout<<"Round "<<round<<": "<<endl;
+        
+        
         cout<<"Coffee Booth: "<<endl;
         if(head){
             coffee* temp = head;
@@ -73,6 +88,7 @@ int main() {
             
             cout<<"There is a new customer joined the line"<<endl;
         }
+        
         cout<<"-----------------------------------------------"<<endl;
         cout<<"Muffin Booth: "<<endl;
         if(muffins.empty()){
@@ -80,13 +96,15 @@ int main() {
         }
         else{
             cout<<"Now we are serving "<<muffins.front().first<<" who ordered a "<<muffins.front().second<<" muffin"<<endl;
-            muffins.pop_back();
+            muffins.pop_front();
         }
         
         if(rand() % 2){
             muffins.push_back(make_pair(names[rand() % 5], muffin[rand() % 5]));
             cout<<"There is a new customer joined the line"<<endl;
         }
+        
+        
         
         cout<<"-----------------------------------------------"<<endl;
         cout<<"Friendship Bracelets Booth: "<<endl;
@@ -95,15 +113,31 @@ int main() {
         }
         else{
             cout<<"Now we are serving "<<bracelets[0]<<" who ordered a friendship bracelets"<<endl;
-            bracelets.erase();
+            bracelets.erase(bracelets.begin());
         }
         
         if(rand() % 2){
             bracelets.push_back(names[rand() % 5]);
             cout<<"There is a new customer joined the line"<<endl;
         }
+        
+        
         cout<<"-----------------------------------------------"<<endl;
         cout<<"Phone Shop: "<<endl;
+        if(phones.empty()){
+            cout<<"The line of phone shop is empty."<<endl;
+        }
+        else{
+            cout<<"Now we are serving "<<phones.top().first<<" who ordered a "<<phones.top().second<<endl;
+            phones.pop();
+        }
+        
+        if(rand() % 2){
+            phones.push(make_pair(names[rand() % 5], phone[rand() % 5]));
+            cout<<"There is a new customer joined the line"<<endl;
+        }
+        
+        cout<<"\n-----------------------------------------------\n"<<endl;
     }
     return 0;
 }
