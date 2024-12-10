@@ -19,14 +19,11 @@ struct coffee {
     
 };
 
-struct muffin {
-    string name;
-    string muffin;
-    
-};
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
+    
+    deque<pair<string, string>> muffins;
     
     string names[10] = {"Austin", "Stepen", "Andrew", "Tony", "Bob", "James", "Smith", "Steve", "Amy", "Ruby"};
     string drinks[10] = {"Latte", "Mocha", "Oatmilk", "Milk", "Coffee 1", "Coffee 2", "Coffee 3", "Coffee 4", "Coffee 5", "Lemonade"};
@@ -44,11 +41,11 @@ int main() {
         }
         tail = newNode;
     }
-    
-    deque<muffin> muffindeque;
+
     
     for (int round = 1; round <= 10; round++){
         cout<<"Round "<<round<<": "<<endl;
+        cout<<"Coffee Booth: "<<endl;
         if(head){
             coffee* temp = head;
             cout<<"Now we are serving "<<head->name<<" who ordered the drink: "<<head->order<<endl;
@@ -70,6 +67,14 @@ int main() {
             
             cout<<"There is a new customer joined the line"<<endl;
         }
+        cout<<"Muffin Booth: "<<endl;
+        cout<<"Now we are serving "<<muffins.front()<<" who ordered a muffin"<<endl;
+        muffins.pop_back();
+        
+        if(rand() % 2){
+            
+        }
+       
     }
     return 0;
 }
