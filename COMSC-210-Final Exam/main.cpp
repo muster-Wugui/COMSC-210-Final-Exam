@@ -44,14 +44,14 @@ int main() {
     
     string names[10] = {"Austin", "Stepen", "Andrew", "Tony", "Bob", "James", "Smith", "Steve", "Amy", "Ruby"};
     string drinks[10] = {"Latte", "Mocha", "Oatmilk", "Milk", "Coffee 1", "Coffee 2", "Coffee 3", "Coffee 4", "Coffee 5", "Lemonade"};
-    string muffin[10] = {"Chocaloate", "milk", "bluebarry", "banana", "muffin 1", "muffin 2", "muffin 3", "muffin 4", "muffin 5", "special flavor"};
-    string phone[10] = {"Iphone 5", "Iphone 6", "Iphone 7", "Iphone 8", "Iphone 9", "Iphone 10", "Iphone 11", "Iphone 12", "Iphone 13", "Iphone 14"};
+    string muffin_name[10] = {"Chocaloate", "milk", "bluebarry", "banana", "muffin 1", "muffin 2", "muffin 3", "muffin 4", "muffin 5", "special flavor"};
+    string phone_name[10] = {"Iphone 5", "Iphone 6", "Iphone 7", "Iphone 8", "Iphone 9", "Iphone 10", "Iphone 11", "Iphone 12", "Iphone 13", "Iphone 14"};
     
     coffee* head = nullptr;
     coffee* tail = nullptr;
     
     for(int i = 0; i < 3; i++){
-        coffee* newNode = new coffee{names[rand() % 5], drinks[rand() % 5], nullptr};
+        coffee* newNode = new coffee{names[rand() % 10], drinks[rand() % 10], nullptr};
         if (!head){
             head = newNode;
         }
@@ -77,7 +77,7 @@ int main() {
             }
         }
         if(rand() % 2 == 0){
-            coffee* newNode = new coffee{names[rand() % 5], drinks[rand() % 5], nullptr};
+            coffee* newNode = new coffee{names[rand() % 10], drinks[rand() % 10], nullptr};
             if (!head){
                 head = newNode;
             }
@@ -95,12 +95,13 @@ int main() {
             cout<<"The line of muffin booth is empty."<<endl;
         }
         else{
-            cout<<"Now we are serving "<<muffins.front().first<<" who ordered a "<<muffins.front().second<<" muffin"<<endl;
+            muffin customer_m = muffins.front();
             muffins.pop_front();
+            cout<<"Now we are serving "<<customer_m.name<<" who ordered a "<<customer_m.order<<" muffin"<<endl;
         }
         
-        if(rand() % 2){
-            muffins.push_back(make_pair(names[rand() % 5], muffin[rand() % 5]));
+        if(rand() % 2 == 0){
+            muffins.push_back({names[rand() % 10], muffin_name[rand() % 10]});
             cout<<"There is a new customer joined the line"<<endl;
         }
         
@@ -112,12 +113,14 @@ int main() {
             cout<<"The line of friendship bracelets is empty."<<endl;
         }
         else{
-            cout<<"Now we are serving "<<bracelets[0]<<" who ordered a friendship bracelets"<<endl;
+            bracelet customer_b = bracelets.front();
             bracelets.erase(bracelets.begin());
+            cout<<"Now we are serving "<<customer_b.name<<" who ordered a friendship bracelets"<<endl;
+            
         }
         
-        if(rand() % 2){
-            bracelets.push_back(names[rand() % 5]);
+        if(rand() % 2 == 0){
+            bracelets.push_back({names[rand() % 10]});
             cout<<"There is a new customer joined the line"<<endl;
         }
         
@@ -128,12 +131,13 @@ int main() {
             cout<<"The line of phone shop is empty."<<endl;
         }
         else{
-            cout<<"Now we are serving "<<phones.top().first<<" who ordered a "<<phones.top().second<<endl;
+            phone customer_p = phones.top();
             phones.pop();
+            cout<<"Now we are serving "<<customer_p.name<<" who ordered an "<<customer_p.order<<endl;
         }
         
-        if(rand() % 2){
-            phones.push(make_pair(names[rand() % 5], phone[rand() % 5]));
+        if(rand() % 2 == 0){
+            phones.push({names[rand() % 10], phone_name[rand() % 5]});
             cout<<"There is a new customer joined the line"<<endl;
         }
         
