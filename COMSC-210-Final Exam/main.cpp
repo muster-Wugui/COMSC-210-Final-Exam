@@ -9,12 +9,19 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <deque>
 using namespace std;
 
 struct coffee {
     string name;
     string order;
     coffee* next;
+    
+};
+
+struct muffin {
+    string name;
+    string muffin;
     
 };
 
@@ -28,8 +35,41 @@ int main() {
     coffee* tail = nullptr;
     
     for(int i = 0; i < 3; i++){
-        coffee* newNode = new coffee{names[reand() % 5], drinks}
+        coffee* newNode = new coffee{names[rand() % 5], drinks[rand() % 5], nullptr};
+        if (!head){
+            head = newNode;
+        }
+        else{
+            tail->next = newNode;
+        }
+        tail = newNode;
     }
     
+    deque<muffin> muffindeque;
+    
+    for (int round = 1; round <= 10; round++){
+        cout<<"Round "<<round<<": "<<endl;
+        if(head){
+            coffee* temp = head;
+            cout<<"Now we are serving "<<head->name<<" who ordered the drink: "<<head->order<<endl;
+            head = head->next;
+            delete temp;
+            if(!head){
+                tail = nullptr;
+            }
+        }
+        if(rand() % 2 == 0){
+            coffee* newNode = new coffee{names[rand() % 5], drinks[rand() % 5], nullptr};
+            if (!head){
+                head = newNode;
+            }
+            else{
+                tail->next = newNode;
+            }
+            tail = newNode;
+            
+            cout<<"There is a new customer joined the line"<<endl;
+        }
+    }
     return 0;
 }
