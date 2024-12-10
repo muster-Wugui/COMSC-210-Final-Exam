@@ -67,6 +67,10 @@ int main() {
         
         
         cout<<"Coffee Booth: "<<endl;
+        
+        if(!head){
+            cout<<"The line of coffee booth is empty."<<endl;
+        }
         if(head){
             coffee* temp = head;
             cout<<"Now we are serving "<<head->name<<" who ordered the drink: "<<head->order<<endl;
