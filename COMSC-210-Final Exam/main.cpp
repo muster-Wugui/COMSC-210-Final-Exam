@@ -10,6 +10,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <deque>
+#include <vector>
 using namespace std;
 
 struct coffee {
@@ -24,9 +25,12 @@ int main() {
     srand(static_cast<unsigned int>(time(0)));
     
     deque<pair<string, string>> muffins;
+    vector<pair<string, string>> bracelets;
     
     string names[10] = {"Austin", "Stepen", "Andrew", "Tony", "Bob", "James", "Smith", "Steve", "Amy", "Ruby"};
     string drinks[10] = {"Latte", "Mocha", "Oatmilk", "Milk", "Coffee 1", "Coffee 2", "Coffee 3", "Coffee 4", "Coffee 5", "Lemonade"};
+    string muffin[10] = {"Chocaloate", "milk", "bluebarry", "banana", "muffin 1", "muffin 2", "muffin 3", "muffin 4", "muffin 5", "special flavor"};
+    
     
     coffee* head = nullptr;
     coffee* tail = nullptr;
@@ -68,11 +72,17 @@ int main() {
             cout<<"There is a new customer joined the line"<<endl;
         }
         cout<<"Muffin Booth: "<<endl;
-        cout<<"Now we are serving "<<muffins.front()<<" who ordered a muffin"<<endl;
-        muffins.pop_back();
+        if(muffins.empty()){
+            cout<<"The line of muffin booth is empty."<<endl;
+        }
+        else{
+            cout<<"Now we are serving "<<muffins.front().first<<" who ordered a muffin"<<endl;
+            muffins.pop_back();
+        }
         
         if(rand() % 2){
-            
+            muffins.push_back(make_pair(names[rand() % 5], muffin[rand() % 5]));
+            cout<<"There is a new customer joined the line"<<endl;
         }
        
     }
